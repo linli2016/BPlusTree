@@ -1,7 +1,3 @@
-package org.tuc.btree;
-
-import org.tuc.utils.MultiCounter;
-
 /**
  * Represents a B+ tree data structure.
  * The structures and behaviors between internal nodes and external nodes are different,
@@ -83,7 +79,7 @@ public class BTree<TKey extends Comparable<TKey>, TValue> {
     private BTreeLeafNode<TKey, TValue> findLeafNodeShouldContainKey(TKey key) {
         BTreeNode<TKey> node = this.root;
         // in case root is the only node, the counter will still get increased.
-        while (MultiCounter.increaseCounter(1) && node.getNodeType() == TreeNodeType.InnerNode) {
+        while (node.getNodeType() == TreeNodeType.InnerNode) {
             node = ((BTreeInnerNode<TKey>) node).getChild(node.search(key));
         }
 
